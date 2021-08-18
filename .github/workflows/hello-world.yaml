@@ -1,17 +1,42 @@
-name: hello-world
+name: workflow
 on: push
 jobs:
-  my-job:
+  Clone-down:
+    name: Clone-down
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
     steps:
       - uses: actions/checkout@v2
-      - name: build
-        run: ci/build-app.sh
-      - name: Test
-        run: ci/unit-test-app.sh
       - name: Upload Repo
         uses: actions/upload-artifact@v2
         with:
           name: code
           path: .
+
+  Test:
+    name: Test
+    runs-on: ubuntu-latest
+    container: gradle:6-jdk11
+    needs: Clone-down
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+          path: .
+      - name: build
+        run: ci/build-app.sh
+      - name: Test
+        run: ci/unit-test-app.sh
+  Build:
+    name: Build
+    runs-on: ubuntu-latest
+    container: gradle:6-jdk11
+    needs: Clone-down
+    steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+          path: path/to/download/artifact/
