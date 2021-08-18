@@ -41,9 +41,7 @@ jobs:
           name: code
           path: .  
   Docker-image:
-    - needs: 
-      - Build
-      - Test
+    - needs: [Build, Test]
     steps:
       - name: Download a single artifact
         uses: actions/download-artifact@v2
