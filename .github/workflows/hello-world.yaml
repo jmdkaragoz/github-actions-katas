@@ -42,15 +42,15 @@ jobs:
           path: .  
   Docker-image:
     needs: [Test, Build]
+      env:
+        docker_username: ${{ secrets.jmdkaragoz }}
+        docker_password: ${{ secrets.5479bf5b-b109-474c-9b41-9a1687a2c3c2 }}
     steps:
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
-          name: codetwo
+          name: code
           path: .
-      env:
-        docker_username: ${{ secrets.jmdkaragoz }}
-        docker_password: ${{ secrets.5479bf5b-b109-474c-9b41-9a1687a2c3c2 }}
       - name: Run docker file
         run: export GIT_COMMIT="GA-$GITHUB_SHA ci/build-docker.sh && ci/push-docker.sh
 
