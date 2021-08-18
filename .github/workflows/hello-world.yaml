@@ -40,7 +40,6 @@ jobs:
       with:
         name: code
         path: .
-    - name: Upload a Build Artifact
     - name: Build with Grade
       run: chmod +x ci/build-app.sh && ci/build-app.sh
     - name: Upload repo
