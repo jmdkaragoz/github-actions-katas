@@ -35,8 +35,24 @@ jobs:
     container: gradle:6-jdk11
     needs: Clone-down
     steps:
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: code
+          path: .  
+  Docker-image:
+    - needs: 
+      - Build
+      - Test
+    steps:
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
           name: code
           path: .
+      env:
+        docker_username: ${{ secrets.jmdkaragoz }}
+        docker_password: ${{ secrets.5479bf5b-b109-474c-9b41-9a1687a2c3c2 }}
+      - name: Run docker file
+        run: export GIT_COMMIT="GA-$GITHUB_SHA ci/build-docker.sh && ci/push-docker.sh
+
