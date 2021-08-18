@@ -53,9 +53,6 @@ jobs:
         with:
           name: code
           path: .
-        env: 
-          docker_username: jmdkaragoz
-          docker_password: 5479bf5b-b109-474c-9b41-9a1687a2c3c2
       - name: Run docker file
         run: export GIT_COMMIT="GA-$GITHUB_SHA && ci/build-docker.sh
       - name: Run docker file second
