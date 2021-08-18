@@ -42,6 +42,8 @@ jobs:
           path: .  
   Docker-image:
     needs: [Test, Build]
+    runs-on: ubuntu-latest
+    container: grade:6-jdk11
     env:
       docker_username: ${{ secrets.jmdkaragoz }}
       docker_password: ${{ secrets.5479bf5b-b109-474c-9b41-9a1687a2c3c2 }}
