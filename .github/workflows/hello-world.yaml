@@ -36,13 +36,19 @@ jobs:
     container: gradle:6-jdk11
     needs: Clone-down
     steps:
+      - uses: actions/checkout@v2
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+          path: .
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
         with:
           name: code
-          path: .  
+          path: .
       - name: build
-        run: ci/build-app.sh
+        run: ci/build-app.sh  
   Docker-image:
     needs: [Test, Build]
     runs-on: ubuntu-latest
