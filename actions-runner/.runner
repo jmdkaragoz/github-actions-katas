@@ -1,0 +1,9 @@
+﻿{
+  "agentId": 21,
+  "agentName": "devopsacademy-instance72",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelines.actions.githubusercontent.com/rKnopPMcifecDmVRA5d6HPrhoUpZTue3MU6rjwgv7iFcn2rVfu",
+  "gitHubUrl": "https://github.com/jmdkaragoz/github-actions-katas",
+  "workFolder": "_work"
+}
