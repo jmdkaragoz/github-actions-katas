@@ -46,7 +46,7 @@ jobs:
   Docker-image:
     needs: [Test, Build]
     runs-on: ubuntu-latest
-    container: grade:6-jdk11
+    container: gradle:6-jdk11
     steps:
       - name: Download a single artifact
         uses: actions/download-artifact@v2
